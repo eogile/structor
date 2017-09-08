@@ -39,17 +39,21 @@ var questions = [
 ];
 
 var downloadController;
+console.log('trying to find downloadController in ' + currentDir + '/server/structor/downloadManager.js');
 try{
 	downloadController = require(currentDir + '/server/structor/downloadManager.js');
 } catch (e) {
+	console.error(e)
 	// do nothing;
 }
+console.log('before if, downloadController = ', downloadController);
 if (process.env.npm_config_global) {
 	console.error('Structor must be installed locally.');
 } else if (downloadController) {
 	if (pathParts && pathParts.length > 0) {
 		var lastDir = pathParts[pathParts.length - 1];
 		var nodeDir = pathParts[pathParts.length - 2];
+		console.log('lastDir = ' + lastDir +' ---- PACKAGE_NAME='+ PACKAGE_NAME+' ----- nodeDir='+ nodeDir+' -------- NODE_DIR_NAME='+NODE_DIR_NAME);
 		if (lastDir === PACKAGE_NAME && nodeDir === NODE_DIR_NAME) {
 
 			const packageVersion = process.env.npm_package_version;
@@ -113,6 +117,7 @@ if (process.env.npm_config_global) {
 		} else {
 			// Installation of some local module.
 			// do nothing;
+			console.log('No downloadcontroller, do nothing');
 		}
 	} else {
 		console.error('Can not parse current dir path.');

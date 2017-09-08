@@ -1,2 +1,6 @@
 node_modules
 npm-debug.log
+server
+package-lock.json
+static/main.js
+static/styles.css

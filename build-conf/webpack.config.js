@@ -34,7 +34,7 @@ module.exports = [
                 {
                     test: /\.css$/,
                     exclude: /node_modules/,
-                    loader: ExtractTextPlugin.extract({fallbackLoader: 'style-loader', loader: 'css-loader'})
+                    loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader'})
                 },
                 {
                     test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)([\?]?.*)$/,
