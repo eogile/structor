@@ -25,7 +25,7 @@ var PACKAGE_NAME = 'structor';
 var NODE_DIR_NAME = 'node_modules';
 var META_REPO_NAME = 'structor-meta';
 var META_REPO_ARCHIVE_EXT = '.tar.gz';
-var META_REPO_URL = 'https://github.com/ipselon/' + META_REPO_NAME;
+var META_REPO_URL = 'https://github.com/eogile/' + META_REPO_NAME;
 var META_REPO_ARCHIVE_URL = META_REPO_URL + '/archive';
 
 var questions = [
@@ -39,21 +39,18 @@ var questions = [
 ];
 
 var downloadController;
-console.log('trying to find downloadController in ' + currentDir + '/server/structor/downloadManager.js');
 try{
 	downloadController = require(currentDir + '/server/structor/downloadManager.js');
 } catch (e) {
 	console.error(e)
 	// do nothing;
 }
-console.log('before if, downloadController = ', downloadController);
 if (process.env.npm_config_global) {
 	console.error('Structor must be installed locally.');
 } else if (downloadController) {
 	if (pathParts && pathParts.length > 0) {
 		var lastDir = pathParts[pathParts.length - 1];
 		var nodeDir = pathParts[pathParts.length - 2];
-		console.log('lastDir = ' + lastDir +' ---- PACKAGE_NAME='+ PACKAGE_NAME+' ----- nodeDir='+ nodeDir+' -------- NODE_DIR_NAME='+NODE_DIR_NAME);
 		if (lastDir === PACKAGE_NAME && nodeDir === NODE_DIR_NAME) {
 
 			const packageVersion = process.env.npm_package_version;
